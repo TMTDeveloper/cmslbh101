@@ -105,6 +105,14 @@
                         <a href="{{route('case_documents.case_document.index')}}" class="menu-item"> <i class="menu-icon fa fa-clone"></i>Dokumen</a>
                     </li>
                     @endcan
+
+                    @can('manage-people')
+                    <h3 class="menu-title">DATA</h3><!-- /.menu-title -->
+                    <li class="menu-item">
+                        <a href="{{route('networks.network.index')}}" class="menu-item"> <i class="menu-icon fa fa-address-book"></i>Jaringan/Lembaga</a>
+                    </li>
+                    @endcan
+
                     @can('manage-users')
                     <h3 class="menu-title">ADMIN</h3><!-- /.menu-title -->
                     <li class="menu-item">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
 @section('content')
 
@@ -7,7 +7,7 @@
         <div class="panel-heading clearfix">
             
             <span class="pull-left">
-                <h4 class="mt-5 mb-5">Create Network</h4>
+                <h4 class="mt-5 mb-5">Tambah Jaringan/Lembaga</h4>
             </span>
 
             <div class="btn-group btn-group-sm pull-right" role="group">

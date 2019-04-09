@@ -1,6 +1,6 @@
 
 <div class="row form-group {{ $errors->has('client_case_id') ? 'has-error' : '' }}">
-    <label for="client_case_id" class="col-md-2 control-label">ID Kasus</label>
+    <label for="client_case_id" class="col-md-2 control-label">Kasus</label>
     <div class="col-md-10">
         <select class="form-control" id="client_case_id" name="client_case_id" required="true">
         	    <option value="" style="display: none;" {{ old('client_case_id', optional($caseConsultation)->client_case_id ?: '') == '' ? 'selected' : '' }} disabled selected>Pilih...</option>
@@ -39,19 +39,25 @@
     </div>
 </div>
 
-<div class="row form-group {{ $errors->has('user_id') ? 'has-error' : '' }}">
-    <label for="user_id" class="col-md-2 control-label">User</label>
+<div class="row form-group {{ $errors->has('recommendation') ? 'has-error' : '' }}">
+    <label for="recommendation" class="col-md-2 control-label">Rekomendasi</label>
     <div class="col-md-10">
-        <select class="form-control" id="user_id" name="user_id" required="true">
-        	    <option value="" style="display: none;" {{ old('user_id', optional($caseConsultation)->user_id ?: '') == '' ? 'selected' : '' }} disabled selected>Pilih...</option>
-        	@foreach ($users as $key => $user)
-			    <option value="{{ $key }}" {{ old('user_id', optional($caseConsultation)->user_id) == $key ? 'selected' : '' }}>
-			    	{{ $user }}
-			    </option>
-			@endforeach
+        <select class="form-control" id="recommendation" name="recommendation">
+                <option value="" style="display: none;" {{ old('recommendation', optional($clientCase)->recommendation ?: '') == '' ? 'selected' : '' }} disabled selected>Pilih...</option>
+            @foreach (['konsultasi' => 'Konsultasi',
+'mediasi' => 'Mediasi',
+'advokasi' => 'Advokasi',
+'investigasi' => 'Investigasi',
+'litigasi' => 'Litigasi',
+'lbh daerah' => 'Lbh Daerah',
+'ditransfer' => 'Ditransfer'] as $key => $text)
+                <option value="{{ $key }}" {{ old('recommendation', optional($clientCase)->recommendation) == $key ? 'selected' : '' }}>
+                    {{ $text }}
+                </option>
+            @endforeach
         </select>
         
-        {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+        {!! $errors->first('recommendation', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 

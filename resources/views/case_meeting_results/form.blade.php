@@ -26,7 +26,7 @@
 <div class="row form-group {{ $errors->has('legal_memo') ? 'has-error' : '' }}">
     <label for="legal_memo" class="col-md-2 control-label">Legal Memo</label>
     <div class="col-md-10">
-        <textarea class="form-control" name="legal_memo" type="textarea" id="legal_memo" value="{{ old('legal_memo', optional($caseMeetingResult)->legal_memo) }}" rows="5" minlength="1" maxlength="255" placeholder="Ketik di sini..."></textarea>
+        <input class="form-control" name="legal_memo" type="file" id="legal_memo" value="{{ old('legal_memo', optional($caseMeetingResult)->legal_memo) }}" rows="5" minlength="1" maxlength="255" placeholder="Ketik di sini...">
         {!! $errors->first('legal_memo', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -34,7 +34,7 @@
 <div class="row form-group {{ $errors->has('notula') ? 'has-error' : '' }}">
     <label for="notula" class="col-md-2 control-label">Notula</label>
     <div class="col-md-10">
-        <textarea class="form-control" name="notula" type="textarea" id="notula" value="{{ old('notula', optional($caseMeetingResult)->notula) }}" rows="5" minlength="1" maxlength="255" placeholder="Ketik di sini..."></textarea> 
+        <input class="form-control" name="notula" type="file" id="notula" value="{{ old('notula', optional($caseMeetingResult)->notula) }}" rows="5" minlength="1" maxlength="255" placeholder="Ketik di sini...">
         {!! $errors->first('notula', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

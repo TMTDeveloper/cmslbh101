@@ -48,7 +48,7 @@
 <div class="row form-group {{ $errors->has('name') ? 'has-error' : '' }}">
     <label for="name" class="col-md-2 control-label">Nama Lengkap</label>
     <div class="col-md-10">
-        <input class="form-control" name="name" type="password" id="name" value="{{ old('name', optional($person)->name) }}" maxlength="255" placeholder="Ketik di sini..." >
+        <input class="form-control" name="name" type="tel" id="name" value="{{ old('name', optional($person)->name) }}" maxlength="255" placeholder="Ketik di sini..." >
         <small class="form-text text-info">*Wajib diisi</small>
         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
     </div>
@@ -57,7 +57,7 @@
 <div class="row form-group {{ $errors->has('alias') ? 'has-error' : '' }}">
     <label for="alias" class="col-md-2 control-label">Nama Panggilan</label>
     <div class="col-md-10">
-        <input class="form-control" name="alias" type="password" id="alias" value="{{ old('alias', optional($person)->alias) }}" maxlength="255" placeholder="Ketik di sini...">
+        <input class="form-control" name="alias" type="tel" id="alias" value="{{ old('alias', optional($person)->alias) }}" maxlength="255" placeholder="Ketik di sini...">
         {!! $errors->first('alias', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -250,6 +250,7 @@
     <label for="no_contact" class="col-md-2 control-label">Nomor HP</label>
     <div class="col-md-10">
         <input class="form-control" name="no_contact" type="text" id="no_contact" value="{{ old('no_contact', optional($person)->no_contact) }}" maxlength="255" placeholder="Ketik di sini...">
+        <small class="form-text text-info">*Wajib diisi</small>
         {!! $errors->first('no_contact', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -274,6 +275,7 @@
     <label for="address" class="col-md-2 control-label">Alamat</label>
     <div class="col-md-10">
         <textarea class="form-control" name="address" type="text" id="address" value="{{ old('address', optional($person)->address) }}"rows="5" maxlength="255" placeholder="Ketik di sini..."></textarea>
+        <small class="form-text text-info">*Wajib diisi</small>
         {!! $errors->first('address', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -395,7 +397,7 @@
                 </option>
             @endforeach
         </select>
-        
+        <small class="form-text text-info">*Wajib diisi</small>
         {!! $errors->first('employment_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -417,7 +419,7 @@
                 </option>
             @endforeach
         </select>
-        
+        <small class="form-text text-info">*Wajib diisi</small>
         {!! $errors->first('income', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -436,7 +438,7 @@
                 </option>
             @endforeach
         </select>
-        
+        <small class="form-text text-info">*Wajib diisi</small>
         {!! $errors->first('marital_status', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -460,7 +462,7 @@
                 </option>
             @endforeach
         </select>
-        
+        <small class="form-text text-info">*Wajib diisi</small>
         {!! $errors->first('home_status', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -518,7 +520,7 @@
 			    </option>
 			@endforeach
         </select>
-        
+        <small class="form-text text-info">*Wajib diisi</small>
         {!! $errors->first('represent', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

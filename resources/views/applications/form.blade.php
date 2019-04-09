@@ -61,11 +61,10 @@
     <label for="info_lbh" class="col-md-2 control-label">Anda tahu LBH dari:</label>
     <div class="col-md-10">
         <select class="form-control standardSelect">
-          <option selected="selected">orange</option>
-          <option>white</option>
-          <option selected="selected">purple</option>
+          <option selected="selected">Media</option>
+          <option selected="selected">Rekan</option>
+          <option selected="selected">Lainnya</option>
         </select>
-        <input class="form-control" name="info_lbh" type="text" id="info_lbh" value="{{ old('info_lbh', optional($application)->info_lbh) }}" maxlength="255" placeholder="Ketik di sini...">
         {!! $errors->first('info_lbh', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

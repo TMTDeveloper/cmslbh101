@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClientCase;
 use App\Models\Person;
 use App\Models\Applicant;
+use App\Models\Application;
 use App\Models\CaseConsultation;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,8 @@ class HomeController extends Controller
         $client_cases= ClientCase::all();
         $people = Person::all();
         $applicants = Applicant::all();
+        $applications = Application::all();
         $case_consultations = CaseConsultation::all();
-        return view('home', compact(['client_cases', 'people', 'applicants', 'case_consultations']));
+        return view('home', compact(['client_cases', 'people', 'applications', 'applicants', 'case_consultations']));
     }
 }

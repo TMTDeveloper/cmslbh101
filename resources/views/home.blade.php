@@ -36,7 +36,7 @@
                             </div>
                             <div class="stat-content dib">
                                 <div class="stat-text">Pengaduan</div>
-                                <div class="stat-digit">{{count($applicants)}}</div>
+                                <div class="stat-digit">{{count($applications)}}</div>
                             </div>
                         </div>
                     </div>

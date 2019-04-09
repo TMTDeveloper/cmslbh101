@@ -44,7 +44,7 @@
                             <th>Person</th>
                             <th>Permohonan</th>
                             <th>Judul Kasus</th>
-                            <th>Rekomendasi</th>
+                            <!-- <th>Rekomendasi</th> -->
                             <th>PP Piket</th>
                             <th>PP Penerima</th>
                             <th>PP Asisten</th>
@@ -58,7 +58,7 @@
                             <td>{{ optional($clientCase->person)->name }}</td>
                             <td>{{ optional($clientCase->application)->no_reg }}</td>
                             <td>{{ $clientCase->case_title }}</td>
-                            <td>{{ $clientCase->recommendation }}</td>
+                            {{--<td>{{ $clientCase->recommendation }}</td>--}}
                             <td>{{ $clientCase->pp_piket }}</td>
                             <td>{{ $clientCase->pp_penerima }}</td>
                             <td>{{ $clientCase->pp_asisten }}</td>

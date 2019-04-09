@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
 @section('content')
 
@@ -39,22 +39,22 @@
 
     <div class="panel-body">
         <dl class="dl-horizontal">
-            <dt>Name</dt>
+            <dt>Nama Lembaga</dt>
             <dd>{{ $network->name }}</dd>
-            <dt>Type</dt>
+            <dt>Jenis Lembaga</dt>
             <dd>{{ $network->type }}</dd>
-            <dt>Contact Person</dt>
+            <dt>Kontak Person</dt>
             <dd>{{ $network->contact_person }}</dd>
-            <dt>No Contact</dt>
+            <dt>No Kontak</dt>
             <dd>{{ $network->no_contact }}</dd>
             <dt>Email</dt>
             <dd>{{ $network->email }}</dd>
+            <dt>Alamat</dt>
+            <dd>{{ $network->address }}</dd>
             <dt>Province</dt>
             <dd>{{ optional($network->province)->name }}</dd>
             <dt>Regency</dt>
             <dd>{{ optional($network->regency)->name }}</dd>
-            <dt>Address</dt>
-            <dd>{{ $network->address }}</dd>
             <dt>Created At</dt>
             <dd>{{ $network->created_at }}</dd>
             <dt>Updated At</dt>

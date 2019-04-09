@@ -39,27 +39,27 @@
     </div>
 </div>
 
-<div class="row form-group {{ $errors->has('recommendation') ? 'has-error' : '' }}">
+{{-- <div class="row form-group {{ $errors->has('recommendation') ? 'has-error' : '' }}">
     <label for="recommendation" class="col-md-2 control-label">Rekomendasi</label>
     <div class="col-md-10">
         <select class="form-control" id="recommendation" name="recommendation">
-        	    <option value="" style="display: none;" {{ old('recommendation', optional($clientCase)->recommendation ?: '') == '' ? 'selected' : '' }} disabled selected>Ketik di sini...</option>
-        	@foreach (['konsultasi' => 'Konsultasi',
+                <option value="" style="display: none;" {{ old('recommendation', optional($clientCase)->recommendation ?: '') == '' ? 'selected' : '' }} disabled selected>Ketik di sini...</option>
+            @foreach (['konsultasi' => 'Konsultasi',
 'mediasi' => 'Mediasi',
 'advokasi' => 'Advokasi',
 'investigasi' => 'Investigasi',
 'litigasi' => 'Litigasi',
 'lbh daerah' => 'Lbh Daerah',
 'ditransfer' => 'Ditransfer'] as $key => $text)
-			    <option value="{{ $key }}" {{ old('recommendation', optional($clientCase)->recommendation) == $key ? 'selected' : '' }}>
-			    	{{ $text }}
-			    </option>
-			@endforeach
+                <option value="{{ $key }}" {{ old('recommendation', optional($clientCase)->recommendation) == $key ? 'selected' : '' }}>
+                    {{ $text }}
+                </option>
+            @endforeach
         </select>
         
         {!! $errors->first('recommendation', '<p class="help-block">:message</p>') !!}
     </div>
-</div>
+</div> --}}
 
 <div class="row form-group {{ $errors->has('pp_piket') ? 'has-error' : '' }}">
     <label for="pp_piket" class="col-md-2 control-label">PP Piket</label>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
 @section('content')
 
@@ -41,14 +41,15 @@
                 <table class="table table-striped ">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Contact Person</th>
-                            <th>No Contact</th>
+                            <th>Nama Lembaga</th>
+                            <th>Jenis Lembaga</th>
+                            <th>Kontak Person</th>
+                            <th>No Kontak</th>
                             <th>Email</th>
+                            <th>Address</th>
                             <th>Province</th>
                             <th>Regency</th>
-                            <th>Address</th>
+                            
 
                             <th></th>
                         </tr>
@@ -61,9 +62,10 @@
                             <td>{{ $network->contact_person }}</td>
                             <td>{{ $network->no_contact }}</td>
                             <td>{{ $network->email }}</td>
+                            <td>{{ $network->address }}</td>
                             <td>{{ optional($network->province)->name }}</td>
                             <td>{{ optional($network->regency)->name }}</td>
-                            <td>{{ $network->address }}</td>
+                            
 
                             <td>
 
