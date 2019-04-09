@@ -43,7 +43,10 @@
                         <tr>
                             <th>Kasus Klien</th>
                             <th>Catatan</th>
-                            <th>Judicial</th>
+                            <th>Peradilan yg Ditempuh</th>
+                            <th>Kasus ditutup</th>
+                            <th>Surat Kuasa</th>
+                            <th>Surat Pemutusan Kuasa</th>
 
                             <th></th>
                         </tr>
@@ -54,6 +57,9 @@
                             <td>{{ optional($caseProgress->clientCase)->case_title }}</td>
                             <td>{{ optional($caseProgress->note)->id }}</td>
                             <td>{{ $caseProgress->judicial }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
 
                             <td>
 

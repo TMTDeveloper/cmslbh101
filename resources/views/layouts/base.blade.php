@@ -164,7 +164,7 @@
                           </div>
                         </div>
 
-                        <div class="dropdown for-message">
+                        <!-- <div class="dropdown for-message">
                           <button class="btn btn-secondary dropdown-toggle" type="button"
                                 id="message"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -182,7 +182,7 @@
                                 </span>
                             </a>
                           </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
