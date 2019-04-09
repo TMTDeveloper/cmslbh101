@@ -105,10 +105,10 @@ class PeopleController extends Controller
     {
         $person = Person::findOrFail($id);
         //$users = User::pluck('id','id')->all();
-        $nationalities = Nationality::pluck('id','id')->all();
-        $provinces = Province::pluck('id','id')->all();
-        $regencies = Regency::pluck('id','id')->all();
-        $districts = District::pluck('id','id')->all();
+        $nationalities = Nationality::pluck('name','id')->all();
+        $provinces = Province::pluck('name','id')->all();
+        $regencies = Regency::pluck('name','id')->all();
+        $districts = District::pluck('name','id')->all();
         $employments = Employment::pluck('name','id')->all();
 
         return view('people.edit', compact('person',/*'users',*/'nationalities','provinces','regencies','districts','employments'));
