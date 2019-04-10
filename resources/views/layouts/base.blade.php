@@ -153,14 +153,18 @@
                         <div class="dropdown for-notification">
                           <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
-                            <span class="count bg-danger">1</span>
+                            <span class="count bg-danger">{{ auth()->user()->notifications->count() }}</span>
                           </button>
                           <div class="dropdown-menu" aria-labelledby="notification">
-                            <p class="red">You have 1 Notification</p>
-                            <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <i class="fa fa-check"></i>
-                                <p>Server #1 overloaded.</p>
-                            </a>
+                            <ul>
+                                
+                                @foreach (auth()->user()->notifications as $notification)
+
+                                <li><a class="dropdown-item media bg-flat-color-2" href="#">{{$notification->data['data']}}</a></li>
+
+                                @endforeach
+
+                            </ul>
                           </div>
                         </div>
 

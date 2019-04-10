@@ -10,9 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Models\Application;
+
+//Notification
+use App\User;
 use App\Notifications\NewApplication;
 
+//Default routes
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,9 +24,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/notification', function () {
 
-    $application->notify(new NewApplication(Application::findOrFail(1)));
+//Notification
+Route::get('/notifications', function () {
+
+    $user = Auth::user();
+    $user->notify(new NewApplication(User::findOrFail(2)));
+
+    //return view('home');
+    //echo "notification";
 });
 
 //Formulir Bantuan Hukum

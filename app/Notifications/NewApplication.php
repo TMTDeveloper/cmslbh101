@@ -2,26 +2,26 @@
 
 namespace App\Notifications;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use App\Models\Application;
 
 class NewApplication extends Notification
 {
     use Queueable;
 
-    public $application;
+    public $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($application)
+    public function __construct()
     {
-        $this->application = $application;
+        //$this->user = $user;
     }
 
     /**
@@ -42,11 +42,10 @@ class NewApplication extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toDatabase($notifiable)
+    public function toArray($notifiable)
     {
         return [
-            'applicant_id' => $this->applicant->id,
-            'applicant_name' => $this->applicant->name
+            'data' => 'This is first notification'
         ];
     }
 }
