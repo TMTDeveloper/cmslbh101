@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 11, 2019 at 06:01 AM
+-- Generation Time: Apr 10, 2019 at 02:19 AM
 -- Server version: 5.7.21-0ubuntu0.16.04.1
 -- PHP Version: 7.2.2-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cmslbh101_dev`
+-- Database: `cmslbh101_vps`
 --
 
 -- --------------------------------------------------------
@@ -61,38 +61,49 @@ CREATE TABLE `applicants` (
 
 CREATE TABLE `applications` (
   `id` int(10) UNSIGNED NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `no_reg` int(11) NOT NULL,
-  `reg_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `applicant_id` int(10) UNSIGNED NOT NULL,
-  `client_id` int(10) UNSIGNED NOT NULL,
-  `is_client` tinyint(1) NOT NULL,
-  `other_org` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `info_lbh` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `why_lbh` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `problem_desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `no_reg` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `reg_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `applicant_id` int(10) UNSIGNED DEFAULT NULL,
+  `client_id` int(10) UNSIGNED DEFAULT NULL,
+  `is_client` tinyint(1) DEFAULT NULL,
+  `other_org` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `info_lbh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `why_lbh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `problem_desc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_confirmed` tinyint(1) DEFAULT NULL,
+  `is_advocacy` tinyint(1) DEFAULT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `applications`
+--
+
+INSERT INTO `applications` (`id`, `no_reg`, `reg_date`, `applicant_id`, `client_id`, `is_client`, `other_org`, `info_lbh`, `why_lbh`, `problem_desc`, `is_confirmed`, `is_advocacy`, `user_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(3, 'ABCD12342-018', '24/02/2019', NULL, NULL, 0, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2019-02-12 03:14:36', '2019-03-05 22:07:52'),
+(4, 'A.2018.10.1003te', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-12 03:23:32', '2019-02-12 03:23:32'),
+(5, '0121212', NULL, NULL, NULL, 1, NULL, NULL, 'Kontras', NULL, 1, NULL, NULL, NULL, '2019-02-14 02:13:34', '2019-02-14 02:13:34'),
+(6, 'ABCD12342-018', NULL, 4, 6, 1, 'kontras', 'medsos', 'kasus selesai', 'lorem ipsum', 1, NULL, NULL, NULL, '2019-02-18 01:25:13', '2019-03-05 22:06:53');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `case_1classifications`
+-- Table structure for table `case1_classifications`
 --
 
-CREATE TABLE `case_1classifications` (
+CREATE TABLE `case1_classifications` (
   `id` char(3) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `case_1classifications`
+-- Dumping data for table `case1_classifications`
 --
 
-INSERT INTO `case_1classifications` (`id`, `name`) VALUES
+INSERT INTO `case1_classifications` (`id`, `name`) VALUES
 ('100', 'PERBURUHAN'),
 ('200', 'PERKOTAAN DAN MASYARAKAT URBAN (PMU)'),
 ('300', 'SIPIL DAN POLITIK (SIPOL)'),
@@ -103,20 +114,20 @@ INSERT INTO `case_1classifications` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `case_2classifications`
+-- Table structure for table `case2_classifications`
 --
 
-CREATE TABLE `case_2classifications` (
+CREATE TABLE `case2_classifications` (
   `id` char(3) NOT NULL,
-  `case_1classification_id` char(3) NOT NULL,
+  `case1_classification_id` char(3) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `case_2classifications`
+-- Dumping data for table `case2_classifications`
 --
 
-INSERT INTO `case_2classifications` (`id`, `case_1classification_id`, `name`) VALUES
+INSERT INTO `case2_classifications` (`id`, `case1_classification_id`, `name`) VALUES
 ('101', '100', 'Hubungan Kerja'),
 ('102', '100', 'Hak Normatif'),
 ('103', '100', 'Kepegawaian (PNS)'),
@@ -164,20 +175,20 @@ INSERT INTO `case_2classifications` (`id`, `case_1classification_id`, `name`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `case_3classifications`
+-- Table structure for table `case3_classifications`
 --
 
-CREATE TABLE `case_3classifications` (
+CREATE TABLE `case3_classifications` (
   `id` char(6) NOT NULL,
-  `case_2classification_id` char(3) NOT NULL,
+  `case2_classification_id` char(3) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `case_3classifications`
+-- Dumping data for table `case3_classifications`
 --
 
-INSERT INTO `case_3classifications` (`id`, `case_2classification_id`, `name`) VALUES
+INSERT INTO `case3_classifications` (`id`, `case2_classification_id`, `name`) VALUES
 ('101.A', '101', 'Perjanjian Kerja'),
 ('101.B', '101', 'Kontrak'),
 ('101.C', '101', 'Outsourcing'),
@@ -342,20 +353,20 @@ INSERT INTO `case_3classifications` (`id`, `case_2classification_id`, `name`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `case_4classifications`
+-- Table structure for table `case4_classifications`
 --
 
-CREATE TABLE `case_4classifications` (
+CREATE TABLE `case4_classifications` (
   `id` char(8) NOT NULL,
-  `case_3classification_id` char(6) NOT NULL,
+  `case3_classification_id` char(6) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `case_4classifications`
+-- Dumping data for table `case4_classifications`
 --
 
-INSERT INTO `case_4classifications` (`id`, `case_3classification_id`, `name`) VALUES
+INSERT INTO `case4_classifications` (`id`, `case3_classification_id`, `name`) VALUES
 ('202.A.1', '202.A', 'Penggarukan'),
 ('202.A.2', '203.A', 'Relokasi'),
 ('202.A.3', '204.A', 'Penggusuran'),
@@ -410,10 +421,21 @@ CREATE TABLE `case_classifications` (
   `id` int(10) UNSIGNED NOT NULL,
   `client_case_id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
-  `class_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `case1_classification_id` int(10) DEFAULT NULL,
+  `case2_classification_id` int(10) DEFAULT NULL,
+  `case3_classification_id` int(10) DEFAULT NULL,
+  `case4_classification_id` int(10) DEFAULT NULL,
+  `violated_right_id` int(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `case_classifications`
+--
+
+INSERT INTO `case_classifications` (`id`, `client_case_id`, `user_id`, `case1_classification_id`, `case2_classification_id`, `case3_classification_id`, `case4_classification_id`, `violated_right_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 100, 101, NULL, NULL, 14, '2019-02-12 06:04:02', '2019-02-12 07:05:10');
 
 -- --------------------------------------------------------
 
@@ -475,13 +497,61 @@ CREATE TABLE `case_consultations` (
 CREATE TABLE `case_documents` (
   `id` int(10) UNSIGNED NOT NULL,
   `client_case_id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `surat_polisi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `surat_gugatan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jwbn_gugatan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `surat_dakwaan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eksepsi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tanggapan_eksepsi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `putusan_sela` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bukti` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pledoi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `replik` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `duplik` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kesimpulan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `putusan_pn` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pernyataan_banding` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `memori_banding` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kontra_memori_banding` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `putusan_pt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pernyataan_kasasi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `memori_kasasi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kontra_memori_kasasi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `putusan_ma` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `surat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lainnya` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `case_documents`
+--
+
+INSERT INTO `case_documents` (`id`, `client_case_id`, `surat_polisi`, `surat_gugatan`, `jwbn_gugatan`, `surat_dakwaan`, `eksepsi`, `tanggapan_eksepsi`, `putusan_sela`, `bukti`, `pledoi`, `replik`, `duplik`, `kesimpulan`, `putusan_pn`, `pernyataan_banding`, `memori_banding`, `kontra_memori_banding`, `putusan_pt`, `pernyataan_kasasi`, `memori_kasasi`, `kontra_memori_kasasi`, `putusan_ma`, `surat`, `lainnya`, `user_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 2, 'doc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-12 09:57:08', '2019-02-12 09:57:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `case_handlings`
+--
+
+CREATE TABLE `case_handlings` (
+  `id` int(11) NOT NULL,
+  `client_case_id` int(11) NOT NULL,
+  `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'posisi kasus',
+  `litigation` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'langkah litigasi',
+  `nonlitigation` enum('Konsultasi','Korespondensi','Investigasi perkara; baik secara elektronik maupun non elektronik','Penelitian hukum','Mediasi','Negosiasi','Pendidikan hukum kepada masyarakat','Pendampingan di luar pengadilan','Drafting dokumen hukum','Konferensi pers','Rapat','Unjuk rasa','Membuat surat dukungan') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'langkah non litigasi',
+  `advocacy_target` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'target advokasi',
+  `condition_achievement` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'kondisi terakhir dan capaian',
+  `obstacle` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'hambatan',
+  `strategy_plan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'rencana strategi advokasi',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -491,15 +561,23 @@ CREATE TABLE `case_documents` (
 
 CREATE TABLE `case_meeting_results` (
   `id` int(10) UNSIGNED NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `legal_memo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notula` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
   `client_case_id` int(10) UNSIGNED NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `legal_memo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notula` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `case_meeting_results`
+--
+
+INSERT INTO `case_meeting_results` (`id`, `client_case_id`, `status`, `legal_memo`, `notula`, `user_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 2, 'dimakan', 'ada', 'ada', 2, NULL, '2019-02-12 09:28:33', '2019-02-12 09:31:05'),
+(2, 2, NULL, 'ada', NULL, NULL, NULL, '2019-02-12 09:33:50', '2019-02-12 09:33:50');
 
 -- --------------------------------------------------------
 
@@ -510,13 +588,21 @@ CREATE TABLE `case_meeting_results` (
 CREATE TABLE `case_progresses` (
   `id` int(10) UNSIGNED NOT NULL,
   `client_case_id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `judicial` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
+  `judicial` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `case_progresses`
+--
+
+INSERT INTO `case_progresses` (`id`, `client_case_id`, `user_id`, `judicial`, `note`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, 'judi', NULL, NULL, '2019-02-12 09:38:11', '2019-02-12 09:38:11'),
+(2, 2, NULL, 'ada', 'ada', NULL, '2019-02-12 09:41:01', '2019-02-12 09:41:01');
 
 -- --------------------------------------------------------
 
@@ -527,14 +613,22 @@ CREATE TABLE `case_progresses` (
 CREATE TABLE `case_transfers` (
   `id` int(10) UNSIGNED NOT NULL,
   `client_case_id` int(10) UNSIGNED NOT NULL,
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `document` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `network_id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `document` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `network_id` int(10) UNSIGNED DEFAULT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `case_transfers`
+--
+
+INSERT INTO `case_transfers` (`id`, `client_case_id`, `note`, `document`, `network_id`, `user_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 'ada', NULL, NULL, NULL, NULL, '2019-02-12 09:46:16', '2019-02-12 09:46:16'),
+(2, 2, 'ada', 'cms10.sql', NULL, NULL, NULL, '2019-02-12 09:48:29', '2019-02-12 09:48:29');
 
 -- --------------------------------------------------------
 
@@ -580,17 +674,25 @@ CREATE TABLE `clients` (
 
 CREATE TABLE `client_cases` (
   `id` int(10) UNSIGNED NOT NULL,
-  `no_case` int(11) NOT NULL,
   `person_id` int(11) UNSIGNED NOT NULL,
   `application_id` int(10) UNSIGNED NOT NULL,
-  `case_title` int(11) NOT NULL,
-  `recommendation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `assigned_lawyer` int(11) NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `case_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `recommendation` enum('konsultasi','mediasi','advokasi','investigasi','litigasi','lbh daerah','ditransfer') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pp_piket` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pp_penerima` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pp_asisten` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `client_cases`
+--
+
+INSERT INTO `client_cases` (`id`, `person_id`, `application_id`, `case_title`, `recommendation`, `pp_piket`, `pp_penerima`, `pp_asisten`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 4, 3, 'Judul Kasus', 'advokasi', NULL, NULL, NULL, NULL, '2019-02-12 05:58:22', '2019-02-12 05:58:22'),
+(2, 6, 4, 'Ali makan topan', 'konsultasi', NULL, NULL, NULL, NULL, '2019-02-12 09:14:49', '2019-02-12 09:14:49');
 
 -- --------------------------------------------------------
 
@@ -7913,7 +8015,8 @@ CREATE TABLE `family_assets` (
 --
 
 INSERT INTO `family_assets` (`id`, `person_id`, `children`, `spouse`, `family`, `other`, `bangunan`, `rumah`, `toko`, `kios`, `warung`, `lapak`, `lahan`, `lahan_garapan`, `mobil`, `motor`, `created_at`, `updated_at`) VALUES
-(1, 3, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2019-02-08 00:44:38', '2019-02-08 00:44:38');
+(3, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-12 02:24:44', '2019-02-12 02:24:44'),
+(4, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-14 02:12:23', '2019-02-14 02:12:23');
 
 -- --------------------------------------------------------
 
@@ -7938,6 +8041,13 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2019_04_09_021701_create_notifications_table', 1);
 
 -- --------------------------------------------------------
 
@@ -8212,13 +8322,13 @@ INSERT INTO `nationalities` (`id`, `code`, `name`) VALUES
 CREATE TABLE `networks` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `contact_person` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `no_contact` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `province_id` int(10) UNSIGNED NOT NULL,
-  `regency_id` int(10) UNSIGNED NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact_person` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `province_id` int(10) UNSIGNED DEFAULT NULL,
+  `regency_id` int(10) UNSIGNED DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -8230,10 +8340,24 @@ CREATE TABLE `networks` (
 --
 
 CREATE TABLE `notifications` (
-  `id` int(11) NOT NULL,
-  `note` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifiable_id` int(10) UNSIGNED NOT NULL,
+  `notifiable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `read_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `type`, `notifiable_id`, `notifiable_type`, `data`, `read_at`, `created_at`, `updated_at`) VALUES
+('678a8600-44c8-410b-8e6a-0277dfc83316', 'App\\Notifications\\NewApplication', 2, 'App\\User', '{\"data\":\"This is first notification\"}', NULL, '2019-04-10 01:07:35', '2019-04-10 01:07:35'),
+('db1213d8-0525-4432-bea0-6028b05017ac', 'App\\Notifications\\NewApplication', 2, 'App\\User', '{\"data\":\"This is first notification\"}', NULL, '2019-04-10 02:17:00', '2019-04-10 02:17:00'),
+('f2a84fe3-6c35-4102-b6a3-609958dd738b', 'App\\Notifications\\NewApplication', 2, 'App\\User', '{\"data\":\"This is first notification\"}', NULL, '2019-04-10 00:29:50', '2019-04-10 00:29:50');
 
 -- --------------------------------------------------------
 
@@ -8264,6 +8388,7 @@ CREATE TABLE `people` (
   `district_id` int(10) UNSIGNED DEFAULT NULL,
   `has_disablility` tinyint(1) UNSIGNED DEFAULT NULL,
   `education` enum('Tidak Sekolah','SD','SMP','SMA','D1','D2','D3','D4','S1','S2','S3') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `employment_id` int(10) DEFAULT NULL,
   `marital_status` enum('kawin','belum kawin','cerai mati','cerai hidup') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `income` enum('tidak berpenghasilan','0-2 juta','2-4 juta','4-6 juta','6-8 juta','8-10 juta','>=10 juta') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `home_status` enum('rumah sendiri','rumah dinas','rumah orangtua','rumah orang lain','rumah saudara','rumah penampungan','asrama','kontrak/sewa','kredit/KPR') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -8280,9 +8405,22 @@ CREATE TABLE `people` (
 -- Dumping data for table `people`
 --
 
-INSERT INTO `people` (`id`, `user_id`, `name`, `alias`, `count_unit`, `pob`, `dob`, `gender`, `religion`, `idcard_type`, `blood_type`, `idcard_number`, `no_contact`, `email`, `inability_letter`, `address`, `nationality_id`, `province_id`, `regency_id`, `district_id`, `has_disablility`, `education`, `marital_status`, `income`, `home_status`, `represent`, `org_name`, `org_position`, `org_member`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(3, NULL, 'adaro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-07 21:39:41', '2019-02-07 21:39:41'),
-(4, NULL, 'angasa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-07 23:57:01', '2019-02-07 23:57:01');
+INSERT INTO `people` (`id`, `user_id`, `name`, `alias`, `count_unit`, `pob`, `dob`, `gender`, `religion`, `idcard_type`, `blood_type`, `idcard_number`, `no_contact`, `email`, `inability_letter`, `address`, `nationality_id`, `province_id`, `regency_id`, `district_id`, `has_disablility`, `education`, `employment_id`, `marital_status`, `income`, `home_status`, `represent`, `org_name`, `org_position`, `org_member`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(3, NULL, 'adaro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-07 21:39:41', '2019-02-07 21:39:41'),
+(4, NULL, 'angasa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-07 23:57:01', '2019-02-07 23:57:01'),
+(5, NULL, 'tes', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 102, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-11 23:20:33', '2019-02-11 23:20:33'),
+(6, NULL, 'ali', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 102, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-11 23:57:20', '2019-02-11 23:57:20'),
+(7, NULL, 'prov', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 102, 31, 3101, 3101010, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-12 00:33:33', '2019-02-12 00:33:33'),
+(8, NULL, 'conto', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 102, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-12 01:55:09', '2019-02-12 01:55:09'),
+(9, NULL, 'admin', 'JD', 'individu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 102, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-13 00:57:46', '2019-02-13 00:57:46'),
+(10, NULL, 'admin', 'Abdul', 'individu', 'jklt', '08/02/2019', 'lelaki', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 102, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-13 01:16:34', '2019-02-13 01:16:34'),
+(11, NULL, 'fdafsaf', 'fdsfdsfa', 'individu', 'fdafsdaf', '01/03/2019', 'lelaki', 'Islam', 'KTP', 'A', '1234567890', '3412535346436', 'em@ail.aol', NULL, NULL, 102, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-13 01:24:55', '2019-02-13 01:24:55'),
+(12, NULL, 'dfasdfsaf', 'dfasfsaf', 'individu', 'fdasfdsafs', '27/01/2019', 'lelaki', 'Islam', 'KTP', 'B', '1234567890', '3412535346436', 'em@ail.aol', NULL, 'fdsafdsafdsa', 102, 11, 1101, 1101010, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-13 01:26:42', '2019-02-13 01:26:42'),
+(13, NULL, 'fdsafdsaf', 'fsdfsaf', 'individu', 'fdfdsaf', '30/01/2019', 'lelaki', 'Islam', 'SIM', 'B', '13243253546', '3412535346436', 'em@ail.aol', NULL, 'fdsafdsaf', 102, 11, 1101, 1101010, NULL, 'Tidak Sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-13 01:28:21', '2019-02-13 01:28:21'),
+(14, NULL, 'dfdfsa', 'fdsfadsf', 'individu', 'fdfdsaf', '13/02/2019', 'perempuan', 'Islam', 'SIM', 'B', '1234567890', '1234335346464', 'em@ail.aol', 'SKTM', 'fdasfsafsaf', 102, 11, 1101, 1101030, NULL, 'Tidak Sekolah', NULL, 'kawin', 'tidak berpenghasilan', 'rumah sendiri', NULL, NULL, NULL, NULL, NULL, '2019-02-13 01:32:21', '2019-02-13 01:32:21'),
+(15, NULL, 'fsfsadff', 'fdsfdsfasf', 'individu', 'fdfdasfds', '13/02/2019', 'lelaki', 'Islam', 'SIM', 'B', '1234567890', '234233252315', 'em@ail.aol', NULL, 'fdsafdsaf', 102, 11, 1101, 1101010, NULL, 'Tidak Sekolah', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-02-13 01:38:24', '2019-02-13 01:38:24'),
+(16, NULL, 'fdfsaf', 'fadfdafsf', 'kelompok', 'fdsfdsafas', '15/02/2019', 'perempuan', 'Islam', 'PASPOR', 'B', '1234567890', '1234335346464', 'em@ail.aol', 'SKTM', 'fdsfsafds', 102, 11, 1101, 1101030, NULL, 'Tidak Sekolah', 17, 'kawin', 'tidak berpenghasilan', 'rumah sendiri', 'sendiri', NULL, NULL, NULL, NULL, '2019-02-13 01:39:51', '2019-02-13 01:39:51'),
+(17, NULL, 'Xari Yazi', 'Mr. X', 'individu', 'Makassar', '01/02/1978', 'lelaki', 'Islam', 'SIM', 'O', '12345677', '07111111111', 'xyz@localhost.co', 'GAKIN', NULL, 102, 31, 0, 0, NULL, 'SD', 3, 'cerai mati', '0-2 juta', 'rumah sendiri', 'sendiri', NULL, NULL, NULL, NULL, '2019-02-14 02:11:53', '2019-03-06 01:14:52');
 
 -- --------------------------------------------------------
 
@@ -8916,9 +9054,14 @@ CREATE TABLE `roles` (
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `roles` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `roles` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` enum('ACTIVE','INACTIVE') COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -8930,8 +9073,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `roles`, `status`, `remember_token`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(2, 'admin', 'admin@localhost.co', '$2y$10$88bNSVStQL9zfKbKmu0yzOiki9AMBJB7AHjgU4LDiNizUlZfmlRf6', NULL, 'ACTIVE', 'O2AiEZxaSxLuTmTLHDFZPfbjvfu2o8gFM6CuOnc21Sid7Evk99UDhxiOBgv4', NULL, '2019-02-07 21:06:08', '2019-02-07 21:06:08');
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `phone`, `position`, `address`, `avatar`, `password`, `roles`, `status`, `remember_token`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(2, 'admin', '', 'admin@localhost.co', '', NULL, NULL, NULL, '$2y$10$88bNSVStQL9zfKbKmu0yzOiki9AMBJB7AHjgU4LDiNizUlZfmlRf6', '[\"ADMIN\",\"KABID\",\"LAWYER\",\"RECEPTIONIST\"]', 'ACTIVE', 'TmXkqcLIGa0OxUq8kFACSA4nL3IDsMEz9EMVpMKHvHdLOaOfgfLUF2gIOn6a', NULL, '2019-02-07 21:06:08', '2019-02-07 21:06:08'),
+(3, 'resepsionis', 'resepsionis', 'resepsionis@localhost.co', '1234567890', 'Resepsionis', NULL, NULL, '$2y$10$e1gq0fpF5jIaLJJ6MEoOWO07RjBXyrKQZoDtQ6xVJNiL16MFBm2.m', '[\"RECEPTIONIST\"]', 'ACTIVE', 'UwVKB6g4Lbj7ysOANwCpUFqIUOBaPD9UuII0SatIAKHw64tdPelWD7O3dkTo', NULL, '2019-02-13 02:48:45', '2019-02-13 02:48:45'),
+(4, 'kabid', 'kabid', 'kabid@localhost.co', '81292910727', 'Kabid', 'jakarta', NULL, '$2y$10$/8Uj8cFke8hc0r9CN81uQe0ekM1LMnowFQYM1mfc2rqxWykqRECrK', '[\"KABID\"]', 'ACTIVE', NULL, NULL, '2019-02-13 02:22:24', '2019-02-13 02:22:24'),
+(5, 'pengacara', 'pengacara', 'pengacara@localhost.co', '1234566788', 'pengacara', NULL, NULL, '$2y$10$yo.g4OAbpZgaEIAnB8duwOJiV.ZJOnK9qLB5rhtl4TpFcRhDzLD/2', '[\"LAWYER\"]', 'ACTIVE', 's8otLNZnkcZyIh1xE64brQvnJGE94sT3yipuoQpFxExM6f3qCWqkSiLd8MxB', NULL, '2019-02-14 01:52:09', '2019-02-14 01:52:09'),
+(6, 'penerimaan', 'penerimaan', 'penerimaan@localhost.co', '081111111111', 'Receptionist', NULL, NULL, '$2y$10$J/7pZQHJNRqlv50vt/h2vOm9AOhtMD8uKoL1lb/gwQJUIAwWBS1Ae', '[\"RECEPTIONIST\"]', 'ACTIVE', NULL, NULL, '2019-02-14 02:00:54', '2019-02-14 02:00:54');
 
 -- --------------------------------------------------------
 
@@ -9036,31 +9183,31 @@ ALTER TABLE `applications`
   ADD KEY `permohonans_user_id_foreign` (`user_id`);
 
 --
--- Indexes for table `case_1classifications`
+-- Indexes for table `case1_classifications`
 --
-ALTER TABLE `case_1classifications`
+ALTER TABLE `case1_classifications`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `case_2classifications`
+-- Indexes for table `case2_classifications`
 --
-ALTER TABLE `case_2classifications`
+ALTER TABLE `case2_classifications`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `lv2_rights_lv1_right_id_foreign` (`case_1classification_id`) USING BTREE;
+  ADD KEY `lv2_rights_lv1_right_id_foreign` (`case1_classification_id`) USING BTREE;
 
 --
--- Indexes for table `case_3classifications`
+-- Indexes for table `case3_classifications`
 --
-ALTER TABLE `case_3classifications`
+ALTER TABLE `case3_classifications`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `lv2_right_id_index` (`case_2classification_id`) USING BTREE;
+  ADD KEY `lv2_right_id_index` (`case2_classification_id`) USING BTREE;
 
 --
--- Indexes for table `case_4classifications`
+-- Indexes for table `case4_classifications`
 --
-ALTER TABLE `case_4classifications`
+ALTER TABLE `case4_classifications`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `lv3_right_id_index` (`case_3classification_id`) USING BTREE;
+  ADD KEY `lv3_right_id_index` (`case3_classification_id`) USING BTREE;
 
 --
 -- Indexes for table `case_classifications`
@@ -9101,6 +9248,13 @@ ALTER TABLE `case_documents`
   ADD PRIMARY KEY (`id`),
   ADD KEY `case_documents_case_id_foreign` (`client_case_id`),
   ADD KEY `case_documents_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `case_handlings`
+--
+ALTER TABLE `case_handlings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `client_case_id` (`client_case_id`) USING BTREE;
 
 --
 -- Indexes for table `case_meeting_results`
@@ -9153,7 +9307,6 @@ ALTER TABLE `clients`
 ALTER TABLE `client_cases`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cases_permohonan_id_foreign` (`application_id`),
-  ADD KEY `cases_user_id_foreign` (`user_id`),
   ADD KEY `person_id` (`person_id`);
 
 --
@@ -9202,6 +9355,13 @@ ALTER TABLE `networks`
   ADD PRIMARY KEY (`id`),
   ADD KEY `networks_province_id_foreign` (`province_id`),
   ADD KEY `networks_regency_id_foreign` (`regency_id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `notifications_notifiable_id_notifiable_type_index` (`notifiable_id`,`notifiable_type`);
 
 --
 -- Indexes for table `people`
@@ -9282,13 +9442,13 @@ ALTER TABLE `applicants`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `case_classifications`
 --
 ALTER TABLE `case_classifications`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `case_closeds`
@@ -9312,25 +9472,25 @@ ALTER TABLE `case_consultations`
 -- AUTO_INCREMENT for table `case_documents`
 --
 ALTER TABLE `case_documents`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `case_meeting_results`
 --
 ALTER TABLE `case_meeting_results`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `case_progresses`
 --
 ALTER TABLE `case_progresses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `case_transfers`
 --
 ALTER TABLE `case_transfers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `clients`
@@ -9342,7 +9502,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT for table `client_cases`
 --
 ALTER TABLE `client_cases`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `disabilities`
@@ -9360,13 +9520,13 @@ ALTER TABLE `employments`
 -- AUTO_INCREMENT for table `family_assets`
 --
 ALTER TABLE `family_assets`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `nationalities`
@@ -9384,7 +9544,7 @@ ALTER TABLE `networks`
 -- AUTO_INCREMENT for table `people`
 --
 ALTER TABLE `people`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `person_documents`
@@ -9402,7 +9562,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_profiles`
