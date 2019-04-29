@@ -6,13 +6,17 @@ use App\User;
 use App\Models\ClientCase;
 use Illuminate\Http\Request;
 use App\Models\ViolatedRight;
+use Illuminate\Support\Facades\Input;
 use App\Models\CaseClassification;
 use App\Models\Case1Classification;
 use App\Models\Case2Classification;
 use App\Models\Case3Classification;
 use App\Models\Case4Classification;
 use App\Http\Controllers\Controller;
+use Barryvdh\Debugbar\Facade as Debugbar;
+use Illuminate\Support\Facades\Auth;
 use Exception;
+
 
 class CaseClassificationsController extends Controller
 {
@@ -65,12 +69,15 @@ $violatedRights = ViolatedRight::pluck('name','id')->all();
      */
     public function store(Request $request)
     {
+  
         try {
             
             $data = $this->getData($request);
-            
-            CaseClassification::create($data);
+            $authInfo = array("user_id" => Auth::user()->id);
+            $data = array_merge($data,$authInfo);
 
+            CaseClassification::create($data);
+      
             return redirect()->route('case_classifications.case_classification.index')
                              ->with('success_message', 'Case Classification was successfully added!');
 
@@ -102,7 +109,7 @@ $violatedRights = ViolatedRight::pluck('name','id')->all();
      *
      * @return Illuminate\View\View
      */
-    public function edit($id)
+      public function edit($id)
     {
         $caseClassification = CaseClassification::findOrFail($id);
         $clientCases = ClientCase::pluck('case_title','id')->all();
@@ -118,7 +125,7 @@ $violatedRights = ViolatedRight::pluck('name','id')->all();
 
     /**
      * Update the specified case classification in the storage.
-     *
+     *F
      * @param  int $id
      * @param Illuminate\Http\Request $request
      *
@@ -131,6 +138,8 @@ $violatedRights = ViolatedRight::pluck('name','id')->all();
             $data = $this->getData($request);
             
             $caseClassification = CaseClassification::findOrFail($id);
+            $authInfo = array("user_id" => Auth::user()->id);
+            $data = array_merge($data,$authInfo);
             $caseClassification->update($data);
 
             return redirect()->route('case_classifications.case_classification.index')
@@ -177,7 +186,7 @@ $violatedRights = ViolatedRight::pluck('name','id')->all();
     {
         $rules = [
             'client_case_id' => 'required',
-            //'user_id' => 'required',
+            // 'user_id' => 'required',
             'case1_classification_id' => 'nullable',
             'case2_classification_id' => 'nullable',
             'case3_classification_id' => 'nullable',
@@ -191,5 +200,25 @@ $violatedRights = ViolatedRight::pluck('name','id')->all();
 
         return $data;
     }
+
+  
+      public function searchCase2Classifications(){
+        $class1_id = Input::get('klas1_rights_id');
+        $case2Classifications = Case2Classification::where('case1_classification_id', '=', $class1_id)->get();
+        return response()->json($case2Classifications);
+      }
+  
+      public function searchCase3Classifications(){
+        $class2_id = Input::get('klas2_rights_id');
+        $case3Classifications = Case3Classification::where('case2_classification_id', '=', $class2_id)->get();
+        return response()->json($case3Classifications);
+      }
+
+      public function searchCase4Classifications(){
+        $class3_id = Input::get('klas3_rights_id');
+        $case4Classifications = Case4Classification::where('case3_classification_id', '=', $class3_id)->get();
+        return response()->json($case4Classifications);
+      }
+
 
 }

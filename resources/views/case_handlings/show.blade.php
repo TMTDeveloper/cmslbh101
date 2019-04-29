@@ -16,19 +16,19 @@
             {{ csrf_field() }}
                 <div class="btn-group btn-group-sm" role="group">
                     <a href="{{ route('case_handlings.case_handling.index') }}" class="btn btn-primary" title="Show All Case Handling">
-                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                        <span class="fa fa-th-list" aria-hidden="true"></span>
                     </a>
 
                     <a href="{{ route('case_handlings.case_handling.create') }}" class="btn btn-success" title="Create Case Handling">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="fa fa-plus" aria-hidden="true"></span>
                     </a>
                     
                     <a href="{{ route('case_handlings.case_handling.edit', $caseHandling->id ) }}" class="btn btn-primary" title="Edit Case Handling">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="fa fa-pencil" aria-hidden="true"></span>
                     </a>
 
                     <button type="submit" class="btn btn-danger" title="Delete Case Handling" onclick="return confirm(&quot;Delete Case Handling??&quot;)">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        <span class="fa fa-trash" aria-hidden="true"></span>
                     </button>
                 </div>
             </form>
@@ -55,10 +55,10 @@
             <dd>{{ $caseHandling->obstacle }}</dd>
             <dt>Strategy Plan</dt>
             <dd>{{ $caseHandling->strategy_plan }}</dd>
-            <dt>Created At</dt>
+            {{-- <dt>Created At</dt>
             <dd>{{ $caseHandling->created_at }}</dd>
             <dt>Updated At</dt>
-            <dd>{{ $caseHandling->updated_at }}</dd>
+            <dd>{{ $caseHandling->updated_at }}</dd> --}}
 
         </dl>
 

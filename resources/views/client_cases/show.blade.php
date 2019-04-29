@@ -48,11 +48,11 @@
             <dt>Recommendation</dt>
             <dd>{{ $clientCase->recommendation }}</dd>
             <dt>PP Piket</dt>
-            <dd>{{ $clientCase->pp_piket }}</dd>
+            <dd>{{ optional($clientCase->pp_piketUser)->name }}</dd>
             <dt>PP Penerima</dt>
-            <dd>{{ $clientCase->pp_penerima }}</dd>
+            <dd>{{ optional($clientCase->pp_penerimaUser)->name }}</dd>
             <dt>PP Asisten</dt>
-            <dd>{{ $clientCase->pp_asisten }}</dd>
+            <dd>{{ optional($clientCase->pp_asistenUser)->name }}</dd>
             {{--<dt>Deleted At</dt>
             <dd>{{ $clientCase->deleted_at }}</dd>
             <dt>Created At</dt>

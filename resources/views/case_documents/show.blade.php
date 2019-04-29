@@ -16,19 +16,19 @@
             {{ csrf_field() }}
                 <div class="btn-group btn-group-sm" role="group">
                     <a href="{{ route('case_documents.case_document.index') }}" class="btn btn-primary" title="Show All Case Document">
-                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                        <span class="fa fa-th-list" aria-hidden="true"></span>
                     </a>
 
                     <a href="{{ route('case_documents.case_document.create') }}" class="btn btn-success" title="Create Case Document">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="fa fa-plus" aria-hidden="true"></span>
                     </a>
                     
                     <a href="{{ route('case_documents.case_document.edit', $caseDocument->id ) }}" class="btn btn-primary" title="Edit Case Document">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="fa fa-pencil" aria-hidden="true"></span>
                     </a>
 
                     <button type="submit" class="btn btn-danger" title="Delete Case Document" onclick="return confirm(&quot;Delete Case Document??&quot;)">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        <span class="fa fa-trash" aria-hidden="true"></span>
                     </button>
                 </div>
             </form>

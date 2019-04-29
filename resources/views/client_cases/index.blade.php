@@ -59,9 +59,9 @@
                             <td>{{ optional($clientCase->application)->no_reg }}</td>
                             <td>{{ $clientCase->case_title }}</td>
                             {{--<td>{{ $clientCase->recommendation }}</td>--}}
-                            <td>{{ $clientCase->pp_piket }}</td>
-                            <td>{{ $clientCase->pp_penerima }}</td>
-                            <td>{{ $clientCase->pp_asisten }}</td>
+                            <td>{{ optional($clientCase->pp_piketUser)->name }}</td>
+                            <td>{{ optional($clientCase->pp_penerimaUser)->name }}</td>
+                            <td>{{ optional($clientCase->pp_asistenUser)->name }}</td>
 
                             <td>
 

@@ -12,7 +12,7 @@
 
             <div class="btn-group btn-group-sm pull-right" role="group">
                 <a href="{{ route('case_transfers.case_transfer.index') }}" class="btn btn-primary" title="Show All Case Transfer">
-                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    <span class="fa fa-th-list" aria-hidden="true"></span>
                 </a>
             </div>
 

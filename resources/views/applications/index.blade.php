@@ -43,8 +43,8 @@
                         <tr>
                             <th>No Reg</th>
                             <th>Tgl Registrasi</th>
-                            <th>Pemohon</th>
-                            <th>Penerima</th>
+                            {{-- <th>Pemohon</th>
+                            <th>Penerima</th> --}}
                             {{--<th>Pernah Menjadi Klien</th>
                             <th>Lembaga yg Pernah Menangani</th>
                             <th>Mengetahui Info LBH</th>
@@ -60,8 +60,8 @@
                         <tr>
                             <td>{{ $application->no_reg }}</td>
                             <td>{{ $application->reg_date }}</td>
-                            <td>{{ optional($application->applicant)->deleted_at }}</td>
-                            <td>{{ optional($application->client)->deleted_at }}</td>
+                            {{-- <td>{{ optional($application->applicant)->deleted_at }}</td>
+                            <td>{{ optional($application->client)->deleted_at }}</td> --}}
                             {{--<td>{{ ($application->is_client) ? 'Yes' : 'No' }}</td>
                             <td>{{ $application->other_org }}</td>
                             <td>{{ $application->info_lbh }}</td>
@@ -78,9 +78,6 @@
                                     <div class="btn-group btn-group-xs pull-right" role="group">
                                         <a href="{{ route('applications.application.show', $application->id ) }}" class="btn btn-info" title="Show Application">
                                             <span class="fa fa-eye" aria-hidden="true"></span>
-                                        </a>
-                                        <a href="{{ route('applications.application.edit', $application->id ) }}" class="btn btn-primary" title="Edit Application">
-                                            <span class="fa fa-pencil" aria-hidden="true"></span>
                                         </a>
 
                                         <button type="submit" class="btn btn-danger" title="Delete Application" onclick="return confirm(&quot;Delete Application?&quot;)">

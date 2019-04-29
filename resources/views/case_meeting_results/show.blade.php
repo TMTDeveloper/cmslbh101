@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
 @section('content')
 
@@ -16,19 +16,19 @@
             {{ csrf_field() }}
                 <div class="btn-group btn-group-sm" role="group">
                     <a href="{{ route('case_meeting_results.case_meeting_result.index') }}" class="btn btn-primary" title="Show All Case Meeting Result">
-                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                        <span class="fa fa-th-list" aria-hidden="true"></span>
                     </a>
 
                     <a href="{{ route('case_meeting_results.case_meeting_result.create') }}" class="btn btn-success" title="Create Case Meeting Result">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="fa fa-plus" aria-hidden="true"></span>
                     </a>
                     
                     <a href="{{ route('case_meeting_results.case_meeting_result.edit', $caseMeetingResult->id ) }}" class="btn btn-primary" title="Edit Case Meeting Result">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="fa fa-pencil" aria-hidden="true"></span>
                     </a>
 
                     <button type="submit" class="btn btn-danger" title="Delete Case Meeting Result" onclick="return confirm(&quot;Delete Case Meeting Result??&quot;)">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        <span class="fa fa-trash" aria-hidden="true"></span>
                     </button>
                 </div>
             </form>
@@ -44,17 +44,12 @@
             <dt>Status</dt>
             <dd>{{ $caseMeetingResult->status }}</dd>
             <dt>Legal Memo</dt>
-            <dd>{{ $caseMeetingResult->legal_memo }}</dd>
+            <dd><a href="//{{ $caseMeetingResult->legal_memo }}" target="_blank">{{ $caseMeetingResult->legal_memo }}</a></dd>
             <dt>Notula</dt>
-            <dd>{{ $caseMeetingResult->notula }}</dd>
+            <dd><a href="//{{ $caseMeetingResult->notula }}" target="_blank">{{ $caseMeetingResult->notula }}</a></dd>
             <dt>User</dt>
-            <dd>{{ optional($caseMeetingResult->user)->id }}</dd>
-            <dt>Deleted At</dt>
-            <dd>{{ $caseMeetingResult->deleted_at }}</dd>
-            <dt>Created At</dt>
-            <dd>{{ $caseMeetingResult->created_at }}</dd>
-            <dt>Updated At</dt>
-            <dd>{{ $caseMeetingResult->updated_at }}</dd>
+            <dd>{{ optional($caseMeetingResult->user)->name }}</dd>
+
 
         </dl>
 

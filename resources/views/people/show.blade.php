@@ -39,8 +39,8 @@
 
     <div class="panel-body">
         <dl class="dl-horizontal">
-            <dt>User</dt>
-            <dd>{{ optional($person->user)->id }}</dd>
+            <dt>User No</dt>
+            <dd>{{ optional($person)->id }}</dd>
             <dt>Nama</dt>
             <dd>{{ $person->name }}</dd>
             <dt>Nama Panggilan</dt>
@@ -70,15 +70,15 @@
             <dt>Alamat</dt>
             <dd>{{ $person->address }}</dd>
             <dt>Kebangsaan</dt>
-            <dd>{{ optional($person->nationality)->id }}</dd>
+            <dd>{{ optional($person->nationality)->name }}</dd>
             <dt>Provinsi</dt>
-            <dd>{{ optional($person->province)->id }}</dd>
+            <dd>{{ optional($person->province)->name }}</dd>
             <dt>Kab/Kota</dt>
-            <dd>{{ optional($person->regency)->id }}</dd>
+            <dd>{{ optional($person->regency)->name }}</dd>
             <dt>Kecamatan</dt>
-            <dd>{{ optional($person->district)->id }}</dd>
+            <dd>{{ optional($person->district)->name }}</dd>
             <dt>Penyandang Disabilitas?</dt>
-            <dd>{{ $person->has_disablility }}</dd>
+            <dd>{{ $person->has_disability == 1 ? "Iya" : "Tidak" }}</dd>
             <dt>Pendidikan</dt>
             <dd>{{ $person->education }}</dd>
             <dt>Status Perkawinan</dt>

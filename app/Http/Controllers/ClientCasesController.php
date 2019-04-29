@@ -57,17 +57,18 @@ class ClientCasesController extends Controller
      */
     public function store(Request $request)
     {
+       
         try {
             
+           
             $data = $this->getData($request);
-            
             ClientCase::create($data);
 
             return redirect()->route('client_cases.client_case.index')
                              ->with('success_message', 'Client Case was successfully added!');
 
         } catch (Exception $exception) {
-
+            error_log($exception);
             return back()->withInput()
                          ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request!']);
         }
@@ -164,7 +165,7 @@ class ClientCasesController extends Controller
     protected function getData(Request $request)
     {
         $rules = [
-            'person_id' => 'required',
+            'person_id' => 'nullable',
             'application_id' => 'required',
             'case_title' => 'required|string|min:1|max:255',
             'recommendation' => 'nullable',

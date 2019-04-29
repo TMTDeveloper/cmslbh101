@@ -24,7 +24,7 @@
 
             <div class="btn-group btn-group-sm pull-right" role="group">
                 <a href="{{ route('case_transfers.case_transfer.create') }}" class="btn btn-success" title="Create Case Transfer">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span class="fa fa-plus" aria-hidden="true"></span>
                 </a>
             </div>
 
@@ -53,8 +53,8 @@
                     @foreach($caseTransfers as $caseTransfer)
                         <tr>
                             <td>{{ optional($caseTransfer->clientCase)->case_title }}</td>
-                            <td>{{ $caseTransfer->document }}</td>
-                            <td>{{ optional($caseTransfer->network)->id }}</td>
+                            <td><a href="//{{ $caseTransfer->document}}" target="_blank">{{ $caseTransfer->document }}</a></td>
+                            <td>{{ optional($caseTransfer->network)->name }}</td>
                             {{--<td>{{ optional($caseTransfer->user)->id }}</td>--}}
 
                             <td>

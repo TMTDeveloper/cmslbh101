@@ -8,7 +8,7 @@ use App\Models\CaseProgress;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Exception;
-
+use Illuminate\Support\Facades\Auth;
 class CaseProgressesController extends Controller
 {
     /**
@@ -58,6 +58,9 @@ $users = User::pluck('id','id')->all();
         try {
             
             $data = $this->getData($request);
+            $authInfo = array("user_id" => Auth::user()->id);
+            $data = array_merge($data,$authInfo);
+
             
             CaseProgress::create($data);
 
@@ -114,6 +117,9 @@ $users = User::pluck('id','id')->all();
         try {
             
             $data = $this->getData($request);
+            $authInfo = array("user_id" => Auth::user()->id);
+            $data = array_merge($data,$authInfo);
+
             
             $caseProgress = CaseProgress::findOrFail($id);
             $caseProgress->update($data);
@@ -162,9 +168,10 @@ $users = User::pluck('id','id')->all();
     {
         $rules = [
             'client_case_id' => 'required',
-            'user_id' => 'nullable',
             'judicial' => 'nullable|string|min:0|max:255',
             'note' => 'nullable|string|min:0|max:255',
+            'sk' => 'nullable|string|min:0|max:255',
+            'skpk' => 'nullable|string|min:0|max:255',
      
         ];
         

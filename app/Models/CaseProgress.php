@@ -31,7 +31,9 @@ class CaseProgress extends Model
                   'client_case_id',
                   'user_id',
                   'judicial',
-                  'note'
+                  'note',
+                  'sk',
+                  'skpk',
               ];
 
     /**

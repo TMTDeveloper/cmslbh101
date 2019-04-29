@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
 @section('content')
 
@@ -16,19 +16,19 @@
             {{ csrf_field() }}
                 <div class="btn-group btn-group-sm" role="group">
                     <a href="{{ route('case_progresses.case_progress.index') }}" class="btn btn-primary" title="Show All Case Progress">
-                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                        <span class="fa fa-th-list" aria-hidden="true"></span>
                     </a>
 
                     <a href="{{ route('case_progresses.case_progress.create') }}" class="btn btn-success" title="Create Case Progress">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="fa fa-plus" aria-hidden="true"></span>
                     </a>
                     
                     <a href="{{ route('case_progresses.case_progress.edit', $caseProgress->id ) }}" class="btn btn-primary" title="Edit Case Progress">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="fa fa-pencil" aria-hidden="true"></span>
                     </a>
 
                     <button type="submit" class="btn btn-danger" title="Delete Case Progress" onclick="return confirm(&quot;Delete Case Progress??&quot;)">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        <span class="fa fa-trash" aria-hidden="true"></span>
                     </button>
                 </div>
             </form>
@@ -42,17 +42,16 @@
             <dt>Client Case</dt>
             <dd>{{ optional($caseProgress->clientCase)->case_title }}</dd>
             <dt>User</dt>
-            <dd>{{ optional($caseProgress->user)->id }}</dd>
+            <dd>{{ optional($caseProgress->user)->name }}</dd>
             <dt>Judicial</dt>
             <dd>{{ $caseProgress->judicial }}</dd>
             <dt>Note</dt>
             <dd>{{ $caseProgress->note }}</dd>
-            <dt>Deleted At</dt>
-            <dd>{{ $caseProgress->deleted_at }}</dd>
-            <dt>Created At</dt>
-            <dd>{{ $caseProgress->created_at }}</dd>
-            <dt>Updated At</dt>
-            <dd>{{ $caseProgress->updated_at }}</dd>
+            <dt>Surat Kuasa</dt>
+            <dd><a href="//{{ $caseProgress->sk }}" target="_blank">{{ $caseProgress->sk }}</a></dd>
+            <dt>Surat Keterangan Pemutusan Kuasa</dt>
+            <dd><a href="//{{ $caseProgress->skpk }}" target="_blank">{{ $caseProgress->skpk }}</a></dd>
+          
 
         </dl>
 

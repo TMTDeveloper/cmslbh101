@@ -23,9 +23,6 @@
                         <span class="fa fa-plus" aria-hidden="true"></span>
                     </a>
                     
-                    <a href="{{ route('applications.application.edit', $application->id ) }}" class="btn btn-primary" title="Edit Application">
-                        <span class="fa fa-pencil" aria-hidden="true"></span>
-                    </a>
 
                     <button type="submit" class="btn btn-danger" title="Delete Application" onclick="return confirm(&quot;Delete Application??&quot;)">
                         <span class="fa fa-trash" aria-hidden="true"></span>
@@ -48,7 +45,7 @@
             <dt>Klien/Penerima</dt>
             <dd>{{ optional($application->client)->deleted_at }}</dd>
             <dt>Pernah Mjd Klien</dt>
-            <dd>{{ ($application->is_client) ? 'Yes' : 'No' }}</dd>
+            <dd>{{ ($application->is_client) ? 'Ya' : 'Tidak' }}</dd>
             <dt>Lembaga yg Pernah Menangani</dt>
             <dd>{{ $application->other_org }}</dd>
             <dt>Info LBH</dt>

@@ -64,10 +64,10 @@
 <div class="row form-group {{ $errors->has('pp_piket') ? 'has-error' : '' }}">
     <label for="pp_piket" class="col-md-2 control-label">PP Piket</label>
     <div class="col-md-10">
-        <select class="form-control" id="user_id" name="user_id" required="true">
-                <option value="" style="display: none;" {{ old('user_id', optional($clientCase)->pp_piket ?: '') == '' ? 'selected' : '' }} disabled selected>Pilih...</option>
+        <select class="form-control" id="pp_piket" name="pp_piket" required="true">
+                <option value="" style="display: none;" {{ old('pp_piket', optional($clientCase)->pp_piket ?: '') == '' ? 'selected' : '' }} disabled selected>Pilih...</option>
             @foreach ($users as $key => $user)
-                <option value="{{ $key }}" {{ old('user_id', optional($clientCase)->pp_piket) == $key ? 'selected' : '' }}>
+                <option value="{{ $key }}" {{ old('pp_piket', optional($clientCase)->pp_piket) == $key ? 'selected' : '' }}>
                     {{ $user }}
                 </option>
             @endforeach
@@ -75,13 +75,13 @@
     </div>
 </div>
 
-<div class="row form-group {{ $errors->has('pp_piket') ? 'has-error' : '' }}">
+<div class="row form-group {{ $errors->has('pp_penerima') ? 'has-error' : '' }}">
     <label for="pp_piket" class="col-md-2 control-label">PP Penerima</label>
     <div class="col-md-10">
-        <select class="form-control" id="user_id" name="user_id" required="true">
-                <option value="" style="display: none;" {{ old('user_id', optional($clientCase)->pp_penerima ?: '') == '' ? 'selected' : '' }} disabled selected>Pilih...</option>
+        <select class="form-control" id="pp_penerima" name="pp_penerima" required="true">
+                <option value="" style="display: none;" {{ old('pp_penerima', optional($clientCase)->pp_penerima ?: '') == '' ? 'selected' : '' }} disabled selected>Pilih...</option>
             @foreach ($users as $key => $user)
-                <option value="{{ $key }}" {{ old('user_id', optional($clientCase)->pp_penerima) == $key ? 'selected' : '' }}>
+                <option value="{{ $key }}" {{ old('pp_penerima', optional($clientCase)->pp_penerima) == $key ? 'selected' : '' }}>
                     {{ $user }}
                 </option>
             @endforeach
@@ -89,13 +89,13 @@
     </div>
 </div>
 
-<div class="row form-group {{ $errors->has('pp_piket') ? 'has-error' : '' }}">
+<div class="row form-group {{ $errors->has('pp_asisten') ? 'has-error' : '' }}">
     <label for="pp_piket" class="col-md-2 control-label">PP Asisten</label>
     <div class="col-md-10">
-        <select class="form-control" id="user_id" name="user_id" required="true">
-                <option value="" style="display: none;" {{ old('user_id', optional($clientCase)->pp_asisten ?: '') == '' ? 'selected' : '' }} disabled selected>Pilih...</option>
+        <select class="form-control" id="pp_asisten" name="pp_asisten" required="true">
+                <option value="" style="display: none;" {{ old('pp_asisten', optional($clientCase)->pp_asisten ?: '') == '' ? 'selected' : '' }} disabled selected>Pilih...</option>
             @foreach ($users as $key => $user)
-                <option value="{{ $key }}" {{ old('user_id', optional($clientCase)->pp_asisten) == $key ? 'selected' : '' }}>
+                <option value="{{ $key }}" {{ old('pp_asisten', optional($clientCase)->pp_asisten) == $key ? 'selected' : '' }}>
                     {{ $user }}
                 </option>
             @endforeach

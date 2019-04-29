@@ -60,7 +60,7 @@ class ApplicationsController extends Controller
                 $names .= $w[0];
             }
         
-        return view('applications.create', compact('applicants','clients','people','names', 'dates', 'numbers', 'words','prefix'));
+        return view('applications.create', compact('applicants','clients','people','names', 'dates', 'numbers', 'words'));
     }
 
     /**

@@ -53,7 +53,7 @@
                     <tbody>
                     @foreach($caseConsultations as $caseConsultation)
                         <tr>
-                            <td>{{ optional($caseConsultation->clientCase)->no_case }}</td>
+                            <td>{{ optional($caseConsultation->clientCase)->case_title }}</td>
                             <td>{{ $caseConsultation->case_position }}</td>
                             <td>{{ $caseConsultation->case_analysis }}</td>
                             <td>{{ $caseConsultation->case_note }}</td>

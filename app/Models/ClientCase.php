@@ -59,6 +59,23 @@ class ClientCase extends Model
         return $this->belongsTo('App\Models\Person','person_id');
     }
 
+
+    public function pp_piketUser()
+    {
+        return $this->belongsTo('App\User','pp_piket');
+    }
+
+    public function pp_penerimaUser()
+    {
+        return $this->belongsTo('App\User','pp_penerima');
+    }
+
+    public function pp_asistenUser()
+    {
+        return $this->belongsTo('App\User','pp_asisten');
+    }
+
+
     /**
      * Get the application for this model.
      */

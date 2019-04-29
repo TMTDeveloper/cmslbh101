@@ -4,6 +4,7 @@
     
     <div class="col-md-10">
         <strong>{{substr($names,0,1)}}.{{ $dates }}.00{{ $numbers }}</strong>
+        <input type="hidden" id="no_reg" name="no_reg" value="{{substr($names,0,1)}}.{{ $dates }}.00{{ $numbers }}">
         {{--<input class="form-control" name="no_reg" type="text" id="no_reg" value="{{ old('no_reg', optional($application)->no_reg) }}" maxlength="255" placeholder="Ketik di sini...">
         {!! $errors->first('no_reg', '<p class="help-block">:message</p>') !!}--}}
     </div>
@@ -60,7 +61,7 @@
 <div class="row form-group {{ $errors->has('info_lbh') ? 'has-error' : '' }}">
     <label for="info_lbh" class="col-md-2 control-label">Anda tahu LBH dari:</label>
     <div class="col-md-10">
-        <select class="form-control standardSelect">
+        <select class="form-control standardSelect" id="info_lbh" name="info_lbh">
           <option selected="selected">Media</option>
           <option selected="selected">Rekan</option>
           <option selected="selected">Lainnya</option>
@@ -103,13 +104,13 @@
     <label for="is_advokasi" class="col-md-2 control-label">Penggunaan data untuk advokasi</label>
     <div class="col-md-6">
         <div class="checkbox">
-            <label for="is_advokasi_1">
-                <input id="is_advokasi_1" class="" name="is_advokasi" type="checkbox" value="1" {{ old('is_advokasi', optional($application)->is_advocacy) == '1' ? 'checked' : '' }}>
+            <label for="is_advocacy">
+                <input id="is_advocacy" class="" name="is_advocacy" type="checkbox" value="1" {{ old('is_advocacy', optional($application)->is_advocacy) == '1' ? 'checked' : '' }}>
                 Saya setuju, mengerti dan bersedia jika data ini digunakan untuk kepentingan advokasi.
             </label>
         </div>
 
-        {!! $errors->first('is_advokasi', '<p class="help-block">:message</p>') !!}
+        {!! $errors->first('is_advocacy', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 

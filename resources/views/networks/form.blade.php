@@ -47,6 +47,7 @@
     </div>
 </div>
 
+
 <div class="row form-group {{ $errors->has('province_id') ? 'has-error' : '' }}">
     <label for="province_id" class="col-md-2 control-label">Provinsi</label>
     <div class="col-md-10">
@@ -63,7 +64,17 @@
     </div>
 </div>
 
-<div class="row form-group {{ $errors->has('regency_id') ? 'has-error' : '' }}">
+
+<div class="row form-group">
+    <label for="regency_id" class="col-md-2 control-label">Kota/Kabupaten</label>
+<div class="col-md-10">
+<select class="form-control" name="regency_id" id="regency_id">
+<option value="0" disable="true" selected="true">Pilih...</option>
+</select>
+</div>
+</div>
+
+{{-- <div class="row form-group {{ $errors->has('regency_id') ? 'has-error' : '' }}">
     <label for="regency_id" class="col-md-2 control-label">Kota/Kabupaten</label>
     <div class="col-md-10">
         <select class="form-control" id="regency_id" name="regency_id">
@@ -77,7 +88,25 @@
         
         {!! $errors->first('regency_id', '<p class="help-block">:message</p>') !!}
     </div>
-</div>
+</div> --}}
 
+<script type="text/javascript">
+    $('#province_id').on('change', function(e){
+      var province_id = e.target.value;
+      $.get('/json-regencies?province_id=' + province_id,function(data) {
+        console.log(data);
+        $('#regency_id').empty();
+        $('#regency_id').append('<option value="0" disable="true" selected="true">Pilih...</option>');
+        $.each(data, function(index, klas2_rightsObj){
+          $('#regency_id').append('<option value="'+ klas2_rightsObj.id +'">'+ klas2_rightsObj.name +'</option>');
+        })
+      });
+    });
+  
+
+
+  
+  
+  </script>
 
 

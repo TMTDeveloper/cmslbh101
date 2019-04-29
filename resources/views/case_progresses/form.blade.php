@@ -18,7 +18,7 @@
 <div class="row form-group {{ $errors->has('judicial') ? 'has-error' : '' }}">
     <label for="judicial" class="col-md-2 control-label">Peradilan yg ditempuh</label>
     <div class="col-md-10">
-        <textarea class="form-control" name="judicial" type="textarea" id="judicial" value="{{ old('judicial', optional($caseProgress)->judicial) }}" rows="5" maxlength="255" placeholder="Ketik di sini..."></textarea>
+        <textarea class="form-control" name="judicial" type="textarea" id="judicial" rows="5" maxlength="255" placeholder="Ketik di sini...">{{ old('judicial', optional($caseProgress)->judicial) }}</textarea>
         {!! $errors->first('judicial', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -26,7 +26,7 @@
 <div class="row form-group {{ $errors->has('note') ? 'has-error' : '' }}">
     <label for="note" class="col-md-2 control-label">Catatan</label>
     <div class="col-md-10">
-        <textarea class="form-control" name="note" type="textarea" id="note" value="{{ old('note', optional($caseProgress)->note) }}" rows="5" maxlength="255"></textarea>
+        <textarea class="form-control" name="note" type="textarea" id="note"  rows="5" maxlength="255">{{ old('note', optional($caseProgress)->note) }}</textarea>
         {!! $errors->first('note', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -48,15 +48,15 @@
 <div class="row form-group">
     <label for="surat_kuasa" class="col-md-2 control-label">Surat Kuasa</label>
     <div class="col-md-10">
-        <input class="form-control" name="surat_kuasa" type="file" id="surat_kuasa" maxlength="255" placeholder="Ketik di sini...">
-        {!! $errors->first('surat_kuasa', '<p class="help-block">:message</p>') !!}
+        <input class="form-control" name="sk" type="text" id="sk" maxlength="255" value="{{ old('sk', optional($caseProgress)->sk) }}"placeholder="Ketik Link File di sini...">
+        {!! $errors->first('sk', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 
 <div class="row form-group">
     <label for="surat_pemutusan_kuasa" class="col-md-2 control-label">Surat Keterangan Pemutusan Kuasa</label>
     <div class="col-md-10">
-        <input class="form-control" name="surat_pemutusan_kuasa" type="file" id="surat_pemutusan_kuasa" maxlength="255" placeholder="Ketik di sini...">
-        {!! $errors->first('surat_pemutusan_kuasa', '<p class="help-block">:message</p>') !!}
+        <input class="form-control" name="skpk" type="text" id="skpk" maxlength="255" placeholder="Ketik Link File di sini..." value="{{ old('skpk', optional($caseProgress)->skpk) }}">
+        {!! $errors->first('skpk', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

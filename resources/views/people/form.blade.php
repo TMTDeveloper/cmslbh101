@@ -274,7 +274,7 @@
 <div class="row form-group {{ $errors->has('address') ? 'has-error' : '' }}">
     <label for="address" class="col-md-2 control-label">Alamat</label>
     <div class="col-md-10">
-        <textarea class="form-control" name="address" type="text" id="address" value="{{ old('address', optional($person)->address) }}"rows="5" maxlength="255" placeholder="Ketik di sini..."></textarea>
+        <textarea class="form-control" name="address" type="text" id="address" rows="5" maxlength="255" placeholder="Ketik di sini..."> {{ old('address', optional($person)->address) }} </textarea>
         <small class="form-text text-info">*Wajib diisi</small>
         {!! $errors->first('address', '<p class="help-block">:message</p>') !!}
     </div>
@@ -494,11 +494,11 @@
 {{--Info Lainnya--}}
 <fieldset>
 <div class="row form-group {{ $errors->has('has_disability') ? 'has-error' : '' }}">
-    <label for="has_disability" class="col-md-2 control-label">Penyandang disabilitas?</label>
+    <label for="has_disability_1" class="col-md-2 control-label">Penyandang disabilitas?</label>
     <div class="col-md-6">
         <div class="checkbox">
-            <label for="has_disability_1">
-                <input id="has_disability_1" class="" name="has_disability" type="checkbox" value="1" {{ old('has_disability', optional($person)->has_disability) == '1' ? 'checked' : '' }}>
+            <label for="has_disability">
+                <input id="has_disability" class="" name="has_disability" type="checkbox" value='1' {{ old('has_disability', optional($person)->has_disability) == '1' ? 'checked' : '' }}>
                 Ya
             </label>
         </div>
@@ -565,6 +565,35 @@
 
 <!--Script Dropdown Wilayah-->
     <script type="text/javascript">
+
+        $('document').ready(function(e){
+            
+           var province_id = $('#province_id').val();
+           var regency_id;
+           $.get('/json-regencies?province_id=' + province_id,function(data) {
+          $.each(data, function(index, regenciesObj){
+              if(regenciesObj.id == "<?php echo optional($person)->regency_id ?>"){
+                $('#regency_id').append('<option value="'+ regenciesObj.id +'" selected>'+ regenciesObj.name +' </option>');
+                regency_id=regenciesObj.id;
+              }else{
+                $('#regency_id').append('<option value="'+ regenciesObj.id +'">'+ regenciesObj.name +'</option>');
+              }
+          })
+        }).done(function(e){
+            $.get('/json-districts?regencies_id=' + regency_id,function(data) {
+           
+           $.each(data, function(index, districtsObj){
+               if(districtsObj.id == "<?php echo optional($person)->district_id ?>"){
+                 $('#district_id').append('<option value="'+ districtsObj.id +'" selected>'+ districtsObj.name +' </option>');
+               }else{
+                 $('#district_id').append('<option value="'+ districtsObj.id +'">'+ districtsObj.name +'</option>');
+               }
+           })
+         })
+        }
+        );
+        })
+
       $('#province_id').on('change', function(e){
         console.log(e);
         var province_id = e.target.value;
@@ -575,9 +604,6 @@
 
           $('#district_id').empty();
           $('#district_id').append('<option value="0" disable="true" selected="true">Pilih Kecamatan...</option>');
-
-          $('#villages').empty();
-          $('#villages').append('<option value="0" disable="true" selected="true">Pilih Desa...</option>');
 
           $.each(data, function(index, regenciesObj){
             $('#regency_id').append('<option value="'+ regenciesObj.id +'">'+ regenciesObj.name +'</option>');

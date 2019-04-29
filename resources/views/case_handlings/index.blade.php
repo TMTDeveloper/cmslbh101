@@ -73,14 +73,14 @@
 
                                     <div class="btn-group btn-group-xs pull-right" role="group">
                                         <a href="{{ route('case_handlings.case_handling.show', $caseHandling->id ) }}" class="btn btn-info" title="Show Case Handling">
-                                            <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+                                            <span class="fa fa-eye" aria-hidden="true"></span>
                                         </a>
                                         <a href="{{ route('case_handlings.case_handling.edit', $caseHandling->id ) }}" class="btn btn-primary" title="Edit Case Handling">
-                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                            <span class="fa fa-pencil" aria-hidden="true"></span>
                                         </a>
 
                                         <button type="submit" class="btn btn-danger" title="Delete Case Handling" onclick="return confirm(&quot;Delete Case Handling?&quot;)">
-                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                            <span class="fa fa-trash" aria-hidden="true"></span>
                                         </button>
                                     </div>
 

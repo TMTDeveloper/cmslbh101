@@ -1,0 +1,4 @@
+{
+    "editor.defaultFormatter": "kokororin.vscode-phpfmt",
+    "blade.format.enable": true
+}

@@ -24,7 +24,7 @@
 
             <div class="btn-group btn-group-sm pull-right" role="group">
                 <a href="{{ route('case_progresses.case_progress.create') }}" class="btn btn-success" title="Create Case Progress">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span class="fa fa-plus" aria-hidden="true"></span>
                 </a>
             </div>
 
@@ -58,8 +58,8 @@
                             <td>{{ optional($caseProgress->note)->id }}</td>
                             <td>{{ $caseProgress->judicial }}</td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><a href="//{{ $caseProgress->sk }}" target="_blank">{{ $caseProgress->sk }}</a></td>
+                            <td><a href="//{{ $caseProgress->skpk }}" target="_blank">{{ $caseProgress->skpk }}</a></td>
 
                             <td>
 

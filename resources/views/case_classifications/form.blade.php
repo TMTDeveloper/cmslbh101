@@ -84,7 +84,7 @@
 <div class="row form-group {{ $errors->has('klas1_right_id') ? 'has-error' : '' }}">
     <label for="klas1_right_id" class="col-md-2 control-label">Klasifikasi Hak</label>
     <div class="col-md-6">
-        <select class="form-control" id="klas1_rights" name="klas1_rights">
+        <select class="form-control" id="case1_classification_id" name="case1_classification_id">
                 <option value="" style="display: none;" {{ old('klas1_right_id', optional($clientCase)->case1_classification_id ?: '') == '' ? 'selected' : '' }} disabled selected>Select Kategori1...</option>
             @foreach ($case1Classifications as $key => $case1Classification)
                 <option value="{{ $key }}" {{ old('klas1_right_id', optional($clientCase)->case1_classification_id) == $key ? 'selected' : '' }}>
@@ -100,7 +100,7 @@
 <div class="row form-group">
         <label for="klas2_right_id" class="col-md-2 control-label">.</label>
 <div class="col-md-6">
-<select class="form-control" name="klas2_rights" id="klas2_rights">
+<select class="form-control" name="case2_classification_id" id="case2_classification_id">
   <option value="0" disable="true" selected="true">Select Kategori2...</option>
 </select>
 </div>
@@ -109,7 +109,7 @@
 <div class="row form-group">
         <label for="klas3_right_id" class="col-md-2 control-label">.</label>
 <div class="col-md-6">
-<select class="form-control" name="klas3_rights" id="klas3_rights">
+<select class="form-control" name="case3_classification_id" id="case3_classification_id">
   <option value="0" disable="true" selected="true">Select Kategori3...</option>
 </select>
 </div>
@@ -118,7 +118,7 @@
 <div class="row form-group">
         <label for="klas4_right_id" class="col-md-2 control-label">.</label>
 <div class="col-md-6">
-<select class="form-control" name="klas4_rights" id="klas4_rights">
+<select class="form-control" name="case4_classification_id" id="case4_classification_id">
   <option value="0" disable="true" selected="true">Select Kategori4...</option>
 </select>
 </div>
@@ -142,50 +142,51 @@
 </div>
 
 <script type="text/javascript">
-  $('#klas1_rights').on('change', function(e){
+  $('#case1_classification_id').on('change', function(e){
     console.log(e);
     var klas1_rights_id = e.target.value;
-    $.get('/json-klas2_rights?klas1_right_id=' + klas1_rights_id,function(data) {
+    $.get('/json-klas2_rights?klas1_rights_id=' + klas1_rights_id,function(data) {
       console.log(data);
-      $('#klas2_rights').empty();
-      $('#klas2_rights').append('<option value="0" disable="true" selected="true">Pilih...</option>');
+      $('#case2_classification_id').empty();
+      $('#case2_classification_id').append('<option value="0" disable="true" selected="true">Pilih...</option>');
 
-      $('#klas3_rights').empty();
-      $('#klas3_rights').append('<option value="0" disable="true" selected="true">Pilih...</option>');
+      $('#case3_classification_id').empty();
+      $('#case3_classification_id').append('<option value="0" disable="true" selected="true">Pilih...</option>');
 
-      $('#klas4_rights').empty();
-      $('#klas4_rights').append('<option value="0" disable="true" selected="true">Pilih...</option>');
+      $('#case4_classification_id').empty();
+      $('#case4_classification_id').append('<option value="0" disable="true" selected="true">Pilih...</option>');
 
       $.each(data, function(index, klas2_rightsObj){
-        $('#klas2_rights').append('<option value="'+ klas2_rightsObj.id +'">'+ klas2_rightsObj.name +'</option>');
+        $('#case2_classification_id').append('<option value="'+ klas2_rightsObj.id +'">'+ klas2_rightsObj.name +'</option>');
       })
     });
   });
 
-  $('#klas2_rights').on('change', function(e){
+  $('#case2_classification_id').on('change', function(e){
     console.log(e);
     var klas2_rights_id = e.target.value;
     $.get('/json-klas3_rights?klas2_rights_id=' + klas2_rights_id,function(data) {
       console.log(data);
-      $('#klas3_rights').empty();
-      $('#klas3_rights').append('<option value="0" disable="true" selected="true">Pilih...</option>');
+      $('#case3_classification_id').empty();
+      $('#case3_classification_id').append('<option value="0" disable="true" selected="true">Pilih...</option>');
 
       $.each(data, function(index, klas3_rightsObj){
-        $('#klas3_rights').append('<option value="'+ klas3_rightsObj.id +'">'+ klas3_rightsObj.name +'</option>');
+        $('#case3_classification_id').append('<option value="'+ klas3_rightsObj.id +'">'+ klas3_rightsObj.name +'</option>');
       })
     });
   });
 
-  $('#klas3_rights').on('change', function(e){
+  $('#case3_classification_id').on('change', function(e){
     console.log(e);
     var klas3_rights_id = e.target.value;
+    console.log(klas3_rights_id)
     $.get('/json-klas4_rights?klas3_rights_id=' + klas3_rights_id,function(data) {
       console.log(data);
-      $('#klas4_rights').empty();
-      $('#klas4_rights').append('<option value="0" disable="true" selected="true">Pilih...</option>');
+      $('#case4_classification_id').empty();
+      $('#case4_classification_id').append('<option value="0" disable="true" selected="true">Pilih...</option>');
 
       $.each(data, function(index, klas4_rightsObj){
-        $('#klas4_rights').append('<option value="'+ klas4_rightsObj.id +'">'+ klas4_rightsObj.name +'</option>');
+        $('#case4_classification_id').append('<option value="'+ klas4_rightsObj.id +'">'+ klas4_rightsObj.name +'</option>');
       })
     });
   });

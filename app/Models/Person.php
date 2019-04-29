@@ -47,7 +47,7 @@ class Person extends Model
                   'province_id',
                   'regency_id',
                   'district_id',
-                  'has_disablility',
+                  'has_disability',
                   'education',
                   'marital_status',
                   'employment_id',

@@ -26,7 +26,7 @@
 <div class="row form-group {{ $errors->has('document') ? 'has-error' : '' }}">
     <label for="document" class="col-md-2 control-label">Document</label>
     <div class="col-md-10">
-        <input class="form-control" name="document" type="file" id="document" value="{{ old('document', optional($caseTransfer)->document) }}" maxlength="255" placeholder="Ketik di sini...">
+        <input class="form-control" name="document" type="text" id="document" value="{{ old('document', optional($caseTransfer)->document) }}" maxlength="255" placeholder="Ketik Link di sini...">
         {!! $errors->first('document', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

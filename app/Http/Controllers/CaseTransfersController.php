@@ -9,6 +9,7 @@ use App\Models\CaseTransfer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class CaseTransfersController extends Controller
 {
@@ -42,7 +43,7 @@ class CaseTransfersController extends Controller
     public function create()
     {
         $clientCases = ClientCase::pluck('case_title','id')->all();
-$networks = Network::pluck('id','id')->all();
+$networks = Network::pluck('name','id')->all();
 $users = User::pluck('id','id')->all();
         
         return view('case_transfers.create', compact('clientCases','networks','users'));
@@ -60,6 +61,8 @@ $users = User::pluck('id','id')->all();
         try {
             
             $data = $this->getData($request);
+            $authInfo = array("user_id" => Auth::user()->id);
+            $data = array_merge($data,$authInfo);
             
             CaseTransfer::create($data);
 
@@ -117,6 +120,8 @@ $users = User::pluck('id','id')->all();
         try {
             
             $data = $this->getData($request);
+            $authInfo = array("user_id" => Auth::user()->id);
+            $data = array_merge($data,$authInfo);
             
             $caseTransfer = CaseTransfer::findOrFail($id);
             $caseTransfer->update($data);
@@ -168,8 +173,6 @@ $users = User::pluck('id','id')->all();
             'note' => 'nullable|string|min:0|max:255',
             'document' => 'nullable|string|min:0|max:255',
             'network_id' => 'nullable',
-            'user_id' => 'nullable',
-     
         ];
         
         $data = $request->validate($rules);

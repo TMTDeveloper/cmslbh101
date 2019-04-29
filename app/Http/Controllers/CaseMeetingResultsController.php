@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\CaseMeetingResult;
 use App\Http\Controllers\Controller;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class CaseMeetingResultsController extends Controller
 {
@@ -58,7 +59,9 @@ $users = User::pluck('id','id')->all();
         try {
             
             $data = $this->getData($request);
-            
+            $authInfo = array("user_id" => Auth::user()->id);
+            $data = array_merge($data,$authInfo);
+
             CaseMeetingResult::create($data);
 
             return redirect()->route('case_meeting_results.case_meeting_result.index')
@@ -114,7 +117,9 @@ $users = User::pluck('id','id')->all();
         try {
             
             $data = $this->getData($request);
-            
+            $authInfo = array("user_id" => Auth::user()->id);
+            $data = array_merge($data,$authInfo);
+
             $caseMeetingResult = CaseMeetingResult::findOrFail($id);
             $caseMeetingResult->update($data);
 
@@ -165,7 +170,6 @@ $users = User::pluck('id','id')->all();
             'status' => 'nullable|string|min:1|max:255',
             'legal_memo' => 'nullable|string|min:1|max:255',
             'notula' => 'nullable|string|min:1|max:255',
-            'user_id' => 'nullable',
      
         ];
         

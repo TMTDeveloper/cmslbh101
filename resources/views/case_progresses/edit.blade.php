@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
 @section('content')
 
@@ -12,11 +12,11 @@
             <div class="btn-group btn-group-sm pull-right" role="group">
 
                 <a href="{{ route('case_progresses.case_progress.index') }}" class="btn btn-primary" title="Show All Case Progress">
-                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    <span class="fa fa-th-list" aria-hidden="true"></span>
                 </a>
 
                 <a href="{{ route('case_progresses.case_progress.create') }}" class="btn btn-success" title="Create Case Progress">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span class="fa fa-plus" aria-hidden="true"></span>
                 </a>
 
             </div>

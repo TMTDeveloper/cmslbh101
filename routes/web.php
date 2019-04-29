@@ -47,9 +47,10 @@ Route::get('/json-districts', 'RegionsController@districts');
 /*Route::get('/json-village', 'RegionsController@villages');*/
 
 //Klasifikasi Hak
-Route::get('/case1Classifications','CaseClassificationController@case1Classifications');
-Route::get('/json-case2Classifications','CaseClassificationController@case2Classifications');
-Route::get('/json-case3Classifications', 'CaseClassificationController@case3Classifications');
+Route::get('/case1Classifications','CaseClassificationsController@case1Classifications');
+Route::get('/json-klas2_rights','CaseClassificationsController@searchCase2Classifications');
+Route::get('/json-klas3_rights', 'CaseClassificationsController@searchCase3Classifications');
+Route::get('/json-klas4_rights', 'CaseClassificationsController@searchCase4Classifications');
 
 Route::resource("users", "UserController");
 
